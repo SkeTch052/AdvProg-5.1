@@ -1,20 +1,48 @@
-﻿// Homework-5.1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
 
-#include <iostream>
+template <class T>
+T squaring(T a) {
+    return a * a;
+}
+
+template <typename T>
+void squaring(std::vector<T>& vec) {
+    for (T& value : vec) {
+        value = value * value;
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int user_n = 0;
+    std::string user_s;
+    std::vector<int> user_v;
+
+    std::cout << "[IN]:";
+    std::cin >> user_n;
+    std::cout << "[OUT]:" << squaring(user_n) << std::endl;
+    std::cin.ignore();
+
+    std::cout << "[IN]:";
+    std::getline(std::cin, user_s);
+    std::stringstream ss(user_s);
+    int v; char comma;
+    while (ss >> v) {
+        user_v.push_back(v);
+        ss >> comma;
+    }
+    std::cout << "[OUT]:";
+    squaring(user_v);
+    for (size_t i = 0; i < user_v.size(); ++i) {
+        std::cout << user_v[i];
+        if (i < user_v.size() - 1) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << std::endl;
+
+    return 0;
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
