@@ -9,10 +9,11 @@ T squaring(T a) {
 }
 
 template <typename T>
-void squaring(std::vector<T>& vec) {
+std::vector<T> squaring(std::vector<T> vec) {
     for (T& value : vec) {
         value = value * value;
     }
+    return vec;
 }
 
 int main()
@@ -35,10 +36,10 @@ int main()
         ss >> comma;
     }
     std::cout << "[OUT]:";
-    squaring(user_v);
-    for (size_t i = 0; i < user_v.size(); ++i) {
-        std::cout << user_v[i];
-        if (i < user_v.size() - 1) {
+    std::vector<int> result = squaring(user_v);
+    for (size_t i = 0; i < result.size(); ++i) {
+        std::cout << result[i];
+        if (i < result.size() - 1) {
             std::cout << ", ";
         }
     }
